@@ -26,7 +26,7 @@ new Server()
 
   .on('error', error => console.log(error.stack))
 
-  .on('closed', () => console.log('Server is closed'));
+  .on('closed', () => console.log('Server is listening'));
 ```
 
 # Events
@@ -51,7 +51,7 @@ server
   .stop()
   .start()
   .on('closed', () => console.log('closed'))
-  .on('listening', () => console.log('closed'));
+  .on('listening', () => console.log('listening'));
 ```
 
 # Routes
@@ -64,6 +64,12 @@ new Server(app => {
 
   app.use('/', (req, res, next) => next(new Error('Only GET accepted !')));
 });
+
+// You can also access express module
+new Server((app, express) => {
+  app.use('/', express.static('.'));
+});
+
 ```
 
 # Options
