@@ -70,12 +70,6 @@ new Server(app => {
 
   app.use('/', (req, res, next) => next(new Error('Only GET accepted !')));
 });
-
-// You can also access express module
-new Server((app, express) => {
-  app.use('/', express.static('.'));
-});
-
 ```
 
 Checkout express documentation for more.
