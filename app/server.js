@@ -10,19 +10,23 @@ class Server extends EventEmitter {
 
   sockets = {}
 
-  constructor (routes) {
+  constructor (customize) {
 
     super();
 
     this.app = express();
 
-    routes(this.app);
+    if ( typeof customize === 'function' ) {
+      customize(this.app);
+    }
 
     process.nextTick(this.start.bind(this));
 
   }
 
   start () {
+
+    this.emit('starting');
 
     if ( ! this.app.get('port') ) {
       this.app.set('port', options.port || process.env.PORT || 3000);
@@ -39,11 +43,9 @@ class Server extends EventEmitter {
     });
 
     this.server.on('connection', socket => {
-      // Add a newly connected socket
       const socketId = this.nextSocketId++;
       this.sockets[socketId] = socket;
 
-      // Remove the socket when it closes
       socket.on('close', () => {
         delete this.sockets[socketId];
       });
@@ -55,6 +57,8 @@ class Server extends EventEmitter {
   }
 
   stop () {
+    this.emit('closing');
+
     this.server.close();
 
     for (let socketId in this.sockets) {

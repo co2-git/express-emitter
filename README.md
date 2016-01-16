@@ -34,6 +34,8 @@ new Server()
 - listening
 - error
 - closed
+- starting
+- closing
 
 # Stop and restart server
 
