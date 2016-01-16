@@ -1,7 +1,7 @@
 express-emitter
 ===
 
-Module that wraps express into an events emitter.
+Start a new HTTP server in one-line. Based on express. Emittable and controllable.
 
 # One-liner
 
@@ -54,9 +54,9 @@ server
   .on('listening', () => console.log('listening'));
 ```
 
-# Routes
+# Customize app
 
-Pass a function as a first argument and it will be feed with the express app:
+You can customize the express app:
 
 ```js
 new Server(app => {
@@ -74,6 +74,4 @@ new Server((app, express) => {
 
 ```
 
-# More
-
-More? Checkout express documentation.
+Checkout express documentation for more.
