@@ -1,7 +1,7 @@
 express-emitter
 ===
 
-Module that wraps express into an events emitter.
+  Module that wraps express into an events emitter.
 
 # One-liner
 

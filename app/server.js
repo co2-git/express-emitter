@@ -10,13 +10,11 @@ class Server extends EventEmitter {
 
   sockets = {}
 
-  constructor (routes, options = {}) {
+  constructor (routes) {
 
     super();
 
     this.app = express();
-
-    this.app.set('port', options.port || process.env.PORT || 3000);
 
     routes(this.app);
 
@@ -25,6 +23,11 @@ class Server extends EventEmitter {
   }
 
   start () {
+
+    if ( ! this.app.get('port') ) {
+      this.app.set('port', options.port || process.env.PORT || 3000);
+    }
+
     this.server = http.createServer(this.app);
 
     this.server.on('error', error => {
