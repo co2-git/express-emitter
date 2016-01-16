@@ -1,6 +1,6 @@
 {
   "name": "express-emitter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "express-emitter ===",
   "main": "dist/server.js",
   "scripts": {
