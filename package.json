@@ -18,5 +18,6 @@
   "homepage": "https://github.com/co2-git/express-emitter#readme",
   "dependencies": {
     "express": "^4.13.3"
-  }
+  },
+  "devDependencies": {}
 }

@@ -42,7 +42,7 @@ class Server extends EventEmitter {
 
     this.server.on('connection', socket => {
       const socketId = this.nextSocketId++;
-      
+
       this.sockets[socketId] = socket;
 
       socket.on('close', () => {
@@ -68,3 +68,5 @@ class Server extends EventEmitter {
   }
 
 }
+
+export default Server;
