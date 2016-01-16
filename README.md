@@ -1,7 +1,7 @@
 express-emitter
 ===
 
-  Module that wraps express into an events emitter.
+Start a new HTTP server in one-line. Based on express. Emittable and controllable.
 
 # One-liner
 
@@ -26,7 +26,7 @@ new Server()
 
   .on('error', error => console.log(error.stack))
 
-  .on('closed', () => console.log('Server is closed'));
+  .on('closed', () => console.log('Server is listening'));
 ```
 
 # Events
@@ -41,49 +41,40 @@ new Server()
 const server = new Server();
 
 // Stop server
-server.stop().on('closed', () => console.log('closed'));
+server.stop();
 
 // Start server
-server.start().on('listening', () => console.log('closed'));
+server.start();
 
 // Restart server
+server.stop().start();
+
+// You can chain listeners
 server
   .stop()
   .start()
   .on('closed', () => console.log('closed'))
-  .on('listening', () => console.log('closed'));
+  .on('listening', () => console.log('listening'));
 ```
 
-# Routes
+# Customize app
 
-Pass a function as a first argument and it will be feed with the express app:
+You can customize the express app:
 
 ```js
 new Server(app => {
+  app.set('port', 4000);
+
   app.get('/', (req, res, next) => res.send('Welcome to my server!'));
 
   app.use('/', (req, res, next) => next(new Error('Only GET accepted !')));
 });
-```
 
-# Options
-
-You can pass any options that will be evaluated as an express attribute.
-
-```js
-new Server({ port : 4000 });
-```
-
-# Usage
+// You can also access express module
+new Server((app, express) => {
+  app.use('/', express.static('.'));
+});
 
 ```
-{EventEmitter} new Server();
-{EventEmitter} new Server([Function]);
-{EventEmitter} new Server([Function], {Object});
-{EventEmitter} new Server({Object});
-{EventEmitter} new Server({Object}, [Function]);
-```
 
-# More
-
-More? Checkout express documentation.
+Checkout express documentation for more.
