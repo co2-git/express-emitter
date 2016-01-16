@@ -29,7 +29,7 @@ class Server extends EventEmitter {
     this.emit('starting');
 
     if ( ! this.app.get('port') ) {
-      this.app.set('port', options.port || process.env.PORT || 3000);
+      this.app.set('port', process.env.PORT || 3000);
     }
 
     this.server = http.createServer(this.app);
@@ -38,12 +38,11 @@ class Server extends EventEmitter {
       this.emit('error', error);
     });
 
-    this.server.listen(this.app.get('port'),  () => {
-      this.emit('listening', { port : this.app.get('port') });
-    });
+    this.server.listen(this.app.get('port'),  () => this.emit('listening'));
 
     this.server.on('connection', socket => {
       const socketId = this.nextSocketId++;
+      
       this.sockets[socketId] = socket;
 
       socket.on('close', () => {
