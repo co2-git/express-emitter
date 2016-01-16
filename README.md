@@ -44,7 +44,7 @@ const server = new Server();
 server.stop().on('closed', () => console.log('closed'));
 
 // Start server
-server.start().on('listening', () => console.log('closed'));
+server.start().on('listening', () => console.log('listening'));
 
 // Restart server
 server
