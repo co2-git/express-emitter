@@ -49,12 +49,11 @@ server.stop();
 server.start();
 
 // Restart server
-server.stop().start();
+server.restart();
 
-// You can chain listeners
+// You can chain control actions with listeners
 server
-  .stop()
-  .start()
+  .restart()
   .on('closed', () => console.log('closed'))
   .on('listening', () => console.log('listening'));
 ```
