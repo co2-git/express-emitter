@@ -60,6 +60,8 @@ Pass a function as a first argument and it will be feed with the express app:
 
 ```js
 new Server(app => {
+  app.set('port', 4000);
+
   app.get('/', (req, res, next) => res.send('Welcome to my server!'));
 
   app.use('/', (req, res, next) => next(new Error('Only GET accepted !')));
@@ -70,24 +72,6 @@ new Server((app, express) => {
   app.use('/', express.static('.'));
 });
 
-```
-
-# Options
-
-You can pass any options that will be evaluated as an express attribute.
-
-```js
-new Server({ port : 4000 });
-```
-
-# Usage
-
-```
-{EventEmitter} new Server();
-{EventEmitter} new Server([Function]);
-{EventEmitter} new Server([Function], {Object});
-{EventEmitter} new Server({Object});
-{EventEmitter} new Server({Object}, [Function]);
 ```
 
 # More
