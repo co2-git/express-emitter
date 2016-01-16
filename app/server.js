@@ -29,7 +29,7 @@ class Server extends EventEmitter {
     this.emit('starting');
 
     if ( ! this.app.get('port') ) {
-      this.app.set('port', options.port || process.env.PORT || 3000);
+      this.app.set('port', process.env.PORT || 3000);
     }
 
     this.server = http.createServer(this.app);
