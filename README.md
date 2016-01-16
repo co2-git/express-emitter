@@ -41,12 +41,15 @@ new Server()
 const server = new Server();
 
 // Stop server
-server.stop().on('closed', () => console.log('closed'));
+server.stop();
 
 // Start server
-server.start().on('listening', () => console.log('listening'));
+server.start();
 
 // Restart server
+server.stop().start();
+
+// You can chain listeners
 server
   .stop()
   .start()
