@@ -67,6 +67,11 @@ class Server extends EventEmitter {
     return this;
   }
 
+  restart () {
+    return this.stop()
+      .on('closed', () => this.start());
+  }
+
 }
 
 export default Server;
