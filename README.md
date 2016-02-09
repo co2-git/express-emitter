@@ -26,7 +26,7 @@ new Server()
 
   .on('error', error => console.log(error.stack))
 
-  .on('closed', () => console.log('Server is listening'));
+  .on('closed', () => console.log('Server is closed'));
 ```
 
 # Events
